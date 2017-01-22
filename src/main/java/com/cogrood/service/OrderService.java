@@ -1,7 +1,13 @@
 package com.cogrood.service;
 
-/**
- * Created by bxiong on 22/01/2017.
- */
-public class OrderService {
+import com.cogrood.model.Order;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public interface OrderService {
+    boolean saveOrder(Order order);
+
+    List<String> getOrder(String[] orderID);
 }

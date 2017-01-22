@@ -1,40 +1,45 @@
-package com.reagroup.spotlight.controller;
+package com.cogrood.controller;
 
-import com.reagroup.spotlight.service.SpotlightService;
+import com.cogrood.model.Order;
+import com.cogrood.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
-public class SpotlightController {
+public class OrderFoodController {
 
-    private final SpotlightService spotlightService;
+    private final OrderService orderService;
 
     @Autowired
-    public SpotlightController(SpotlightService spotlightService) {
-        this.spotlightService = spotlightService;
+    public OrderFoodController(OrderService orderService) {
+        this.orderService = orderService;
     }
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String[].class, new StringArrayPropertyEditor(null));
+    @RequestMapping(value = "/orders")
+    public ResponseEntity getOrder(@RequestParam("orderID") String[] orderID) {
+        //TODO
+        List<String> orders = orderService.getOrder(orderID);
+        if (null != orders && !orders.isEmpty()) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().body(orderID);
+        }
     }
 
-    @RequestMapping(value = "/spotlight")
-    public ResponseEntity<?> spotlight(@RequestParam("loc") String[] loc) {
-        List<String> locations = Arrays.asList(loc);
-        if (locations.isEmpty() || locations.stream().map(String::trim).allMatch(String::isEmpty)) {
+    @RequestMapping(value = "/orders", method = RequestMethod.POST)
+    public ResponseEntity saveOrder(Order order) {
+        //TODO
+        boolean saveFlag = orderService.saveOrder(order);
+        if (saveFlag) {
+            return ResponseEntity.ok().build();
+        } else {
             return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok(spotlightService.getSpotlight(locations));
     }
-
 }
