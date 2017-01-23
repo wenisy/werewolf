@@ -1,36 +1,30 @@
 package com.cogrood.controller;
 
-import com.cogrood.dao.MyRepository;
-import com.cogrood.model.Order;
-import com.cogrood.service.OrderService;
+import com.cogrood.model.OrderForm;
+import com.cogrood.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 public class OrderFoodController {
 
-    private final OrderService orderService;
+
+    private final OrderRepository orderRepository;
 
     @Autowired
-    public OrderFoodController(@Qualifier("abc") OrderService orderService) {
-        this.orderService = orderService;
+    public OrderFoodController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
     }
 
-    @Autowired
-    MyRepository myRepository;
-
     @RequestMapping(value = "/orders")
-    public ResponseEntity getOrder(@RequestParam("orderID") String[] orderID) {
+    public ResponseEntity getOrder(@RequestParam("orderID") String orderID) {
         //TODO
-        List<String> orders = orderService.getOrder(orderID);
-        if (null != orders && !orders.isEmpty()) {
+        OrderForm orderForm = orderRepository.getOne(orderID);
+        if (null != orderForm) {
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.badRequest().body(orderID);
@@ -38,12 +32,13 @@ public class OrderFoodController {
     }
 
     @RequestMapping(value = "/orders", method = RequestMethod.POST)
-    public ResponseEntity saveOrder(Order order) {
+    public ResponseEntity saveOrder(OrderForm orderForm) {
         //TODO
-        boolean saveFlag = orderService.saveOrder(order);
-        if (saveFlag) {
+        try {
+            orderRepository.save(orderForm);
             return ResponseEntity.ok().build();
-        } else {
+        } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }
     }
