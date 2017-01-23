@@ -1,8 +1,10 @@
 package com.cogrood.controller;
 
+import com.cogrood.dao.MyRepository;
 import com.cogrood.model.Order;
 import com.cogrood.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,9 +19,12 @@ public class OrderFoodController {
     private final OrderService orderService;
 
     @Autowired
-    public OrderFoodController(OrderService orderService) {
+    public OrderFoodController(@Qualifier("abc") OrderService orderService) {
         this.orderService = orderService;
     }
+
+    @Autowired
+    MyRepository myRepository;
 
     @RequestMapping(value = "/orders")
     public ResponseEntity getOrder(@RequestParam("orderID") String[] orderID) {
