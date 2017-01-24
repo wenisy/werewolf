@@ -1,7 +1,7 @@
 package com.cogrood.controller;
 
 import com.cogrood.model.OrderForm;
-import com.cogrood.repository.OrderRepository;
+import com.cogrood.repository.OrderFormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderFoodController {
 
 
-    private final OrderRepository orderRepository;
+    private final OrderFormRepository orderFormRepository;
 
     @Autowired
-    public OrderFoodController(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
+    public OrderFoodController(OrderFormRepository orderRepository) {
+        this.orderFormRepository = orderRepository;
     }
 
     @RequestMapping(value = "/orders")
     public ResponseEntity getOrder(@RequestParam("orderID") String orderID) {
         //TODO
-        OrderForm orderForm = orderRepository.getOne(orderID);
+        OrderForm orderForm = orderFormRepository.findOne(orderID);
         if (null != orderForm) {
             return ResponseEntity.ok().build();
         } else {
@@ -35,7 +35,7 @@ public class OrderFoodController {
     public ResponseEntity saveOrder(OrderForm orderForm) {
         //TODO
         try {
-            orderRepository.save(orderForm);
+            orderFormRepository.save(orderForm);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             e.printStackTrace();
