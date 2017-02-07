@@ -58,7 +58,7 @@ var dispatcherRole = (function () {
     if ("getRole" == fromWhere) {
         document.getElementById("titleName").innerHTML = "您的角色是:";
         $.ajax({
-            url: 'http://192.168.1.102:8000/werewolvesGames',
+            url: 'http://localhost:8000/werewolvesGames',
             method: "GET",
             contentType: "application/json;charset=UTF-8",
             data: {Id: roomNumber},

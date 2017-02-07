@@ -43,13 +43,13 @@ var werewolvesObject = (function () {
         var roles = getAllRoles();
         if (roles.length > 0) {
             $.ajax({
-                url: 'http://192.168.1.102:8000/werewolvesGames',
+                url: 'http://localhost:8000/werewolvesGames',
                 method: "POST",
                 contentType: "application/json;charset=UTF-8",
                 data: JSON.stringify({roles: roles}),
                 async: false,
                 success: function (res) {
-                    window.location.href = window.location.href.split("/were.html")[0] + "/succeed.html?create&" + res;
+                    window.location.href = "/succeed.html?create&" + res;
                 }
             });
         }
