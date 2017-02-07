@@ -5,7 +5,7 @@
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>创建成功</title>
+    <title>首页</title>
     <style type="text/css">
         body {
             background-color: #f8e6ca;
@@ -65,17 +65,17 @@
 </head>
 <body>
 <div class="box">
-    <a href="/static/html/uploadtest/werewolves/were.html"><input type="button" class="main_btn create_game"
-                                                                  value="创建游戏"></a>
+    <a href="/werewolves.html"><input type="button" class="main_btn create_game"
+                                      value="创建游戏"></a>
     <input type="text" placeholder="已有房间，请输入号码" id="getRole" class="main_btn type_room_number"
            onkeydown="keyDownHandler()">
-    <button class="main_btn confirm_button" onclick="getRole()" eydown>确定</button>
+    <button class="main_btn confirm_button" onclick="getRole()">确定</button>
 </div>
 <script>
     var getRole = function () {
         var roomNumber = document.getElementById("getRole").value;
         if (roomNumber > 0) {
-            window.location.href = "/static/html/uploadtest/werewolves/succeed.html?getRole&" + roomNumber;
+            window.location.href = "/succeed.html?getRole&" + roomNumber;
 
         } else {
             alert("请输入正确的房间号码");
