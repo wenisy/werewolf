@@ -16,11 +16,14 @@ public class WerewolvesKillerController {
 
     private final Logger logger = LoggerFactory.getLogger(WerewolvesKillerController.class);
 
+    @CrossOrigin(origins = "http://wolf.retuike.com")
     @RequestMapping(value = "/werewolvesGames", method = RequestMethod.POST)
     public ResponseEntity saveWerewolvesGame(@RequestBody Werewolves werewolves) {
         int Id = werewolvesService.saveWerewolvesGame(werewolves);
         return ResponseEntity.ok(Id);
     }
+
+    @CrossOrigin(origins = "http://wolf.retuike.com")
     @RequestMapping(value = "/werewolvesGames", method = RequestMethod.GET)
     public ResponseEntity getWerewolvesGame(@RequestParam("Id") Integer Id) {
         try {

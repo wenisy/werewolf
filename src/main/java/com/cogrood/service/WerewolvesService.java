@@ -38,12 +38,12 @@ public class WerewolvesService {
         }
         List<Object> roles = Arrays.asList(werewolves.getRoles());
         List<Object> newRoles = roles.stream().skip(1).collect(Collectors.toList());
-        if (newRoles.isEmpty()) {
+        if (roles.isEmpty()) {
             werewolvesRepository.delete(werewolves);
             return 0;
         }
         werewolves.setRoles(newRoles.toArray());
         werewolvesRepository.save(werewolves);
-        return (Integer) roles.get(0);
+        return Integer.parseInt(roles.get(0).toString());
     }
 }
