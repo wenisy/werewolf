@@ -1,19 +1,24 @@
 spring:
+  profiles.active: dev
   datasource:
     url: jdbc:mysql://localhost:3306/cogrood
-    username: root
-    password: Rouyoubaba1227,
+    username: test
+    password: test
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
+---
+spring:
+  profiles: dev
 server:
-  port: 8000
+  port: 9000
 
 ---
 spring:
-  profiles:
-    active: production
+  profiles: production
   datasource:
-    username: root
-    password: Rouyoubaba1227,
+    username: XXX
+    password: XXXX
+server:
+  port: 8000
