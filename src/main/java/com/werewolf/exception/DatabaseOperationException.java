@@ -1,4 +1,4 @@
-package com.cogrood.exception;
+package com.werewolf.exception;
 
 public class DatabaseOperationException extends RuntimeException {
     public DatabaseOperationException(String message) {

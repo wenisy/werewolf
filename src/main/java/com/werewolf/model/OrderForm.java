@@ -1,4 +1,4 @@
-package com.cogrood.model;
+package com.werewolf.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,7 +1,7 @@
-package com.cogrood.service;
+package com.werewolf.service;
 
-import com.cogrood.model.Werewolves;
-import com.cogrood.repository.WerewolvesRepository;
+import com.werewolf.model.Werewolves;
+import com.werewolf.repository.WerewolvesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

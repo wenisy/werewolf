@@ -1,4 +1,4 @@
-package com.cogrood.model;
+package com.werewolf.model;
 
 public enum Roles {
     WEREWOLF(1, "WEREWOLF"), FORTUNETELLER(2, "FORTUNETELLER"), HUNTER(3, "HUNTER"), WITCH(4, "WITCH"),

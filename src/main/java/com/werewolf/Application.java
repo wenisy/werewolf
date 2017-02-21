@@ -1,4 +1,4 @@
-package com.cogrood;
+package com.werewolf;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

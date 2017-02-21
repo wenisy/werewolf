@@ -1,6 +1,6 @@
-package com.cogrood.repository;
+package com.werewolf.repository;
 
-import com.cogrood.model.OrderForm;
+import com.werewolf.model.OrderForm;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

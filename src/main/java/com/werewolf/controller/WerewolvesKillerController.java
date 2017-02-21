@@ -1,7 +1,7 @@
-package com.cogrood.controller;
+package com.werewolf.controller;
 
-import com.cogrood.model.Werewolves;
-import com.cogrood.service.WerewolvesService;
+import com.werewolf.model.Werewolves;
+import com.werewolf.service.WerewolvesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
